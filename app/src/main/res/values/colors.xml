@@ -2,4 +2,17 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="blue_50">#e6f4f8</color>
+    <color name="blue_100">#b0dde9</color>
+    <color name="blue_200">#8acdde</color>
+    <color name="blue_300">#55b6cf</color>
+    <color name="blue_400">#34a8c5</color>
+    <color name="blue_500">#0192b7</color>
+    <color name="blue_600">#0185a7</color>
+    <color name="blue_700">#016882</color>
+    <color name="blue_800">#015065</color>
+    <color name="blue_900">#003d4d</color>
+
+
 </resources>
