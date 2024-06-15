@@ -14,5 +14,8 @@
     <color name="blue_800">#015065</color>
     <color name="blue_900">#003d4d</color>
 
+    <color name="red">#C67474</color>
+    <color name="green">#74C67C</color>
+
 
 </resources>
