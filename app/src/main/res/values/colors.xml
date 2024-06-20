@@ -16,6 +16,7 @@
 
     <color name="red">#C67474</color>
     <color name="green">#74C67C</color>
+    <color name="active_indicator">#74C67C</color>
 
 
 </resources>
