@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "909796220083",
+    "project_id": "shorof-learning",
+    "storage_bucket": "shorof-learning.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909796220083:android:543f12d64c8d277c5ca4c6",
+        "android_client_info": {
+          "package_name": "com.mazpiss.skripsi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAylbFGQwoankUv86YIeN8arIbFQE9CWl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

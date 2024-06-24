@@ -22,15 +22,20 @@ class TentangFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        val quizViewModel =
+        val tentangViewModel =
             ViewModelProvider(this).get(TentangViewModel::class.java)
 
         _binding = FragmentTentangBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textTentang
-        quizViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val appDescriptionTextView:TextView = binding.textDeskirpsiAplikasi
+        val developerDescriptionTextView:TextView = binding.textSubDeskripsi1
+
+        tentangViewModel.appDescription.observe(viewLifecycleOwner){
+            appDescriptionTextView.text = it
+        }
+        tentangViewModel.developerDescription.observe(viewLifecycleOwner){
+            developerDescriptionTextView.text = it
         }
         return root
     }

@@ -7,4 +7,49 @@
     <string name="title_materi">Materi</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="deskripsi_aplikasi">Deskripsi Aplikasi</string>
+    <string name="sub_text_deskripsi1">Aplikasi Shorof Learn merupkan aplikasi yang dibuat sebagai media pembelajaran ilmu Shorof secara dasar. Aplikasi ini memfasilitasi kebutuhan media pembelajaran bagi mahasiswa UNIDA  Gontor dan masyarakat umum.</string>
+    <string name="sub_text_deskripsi2">Aplikasi ini dikembangkan sebagai tugas akhir Program Studi Teknik Informatik UNIDA Gontor</string>
+    <string name="deskripsi_pengembang">Havidz Muhammad Iqbal, mahasiswa Teknik Informatika di UNIDA Gontor, fokus pada pengembangan perangkat lunak, serta aktif dalam kegiatan  kampus.</string>
+    <string name="salam">Assalamualaikum</string>
+    <string name="subSalam">Mari mempelajari ilmu Shorof dengan asik \ndan menyenangkan sekarang !</string>
+    <string name="kosakata">kosakata</string>
+    <string name="terjemahan">Terjemahan</string>
+    <string name="kosakata_harian">Kosakata Harian</string>
+    <string name="mari_belajar">Mari Belajar !</string>
+    <string name="sub_mari_belajar">Semangat belajarnya ya sahabat,\ndan jangan lupa sebelum belajar\nberdoa terlebih duhulu ya!</string>
+    <string name="sub_kosakata_harian">Kembangkan kosakata Anda dengan\nmengeksplorasi kata baru setiap hari!</string>
+    <string name="lihat_lainnya">Lihat Lainnya</string>
+    <string name="arab">Arab</string>
+    <string name="latin">Latin</string>
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+
+    <string-array name="data_kosakata_harian1">
+        <item>Meja</item>
+        <item>Penghapus</item>
+        <item>Kursi</item>
+        <item>Lampu</item>
+    </string-array>
+
+    <string-array name="data_kosakata_harian2">
+        <item>Meja</item>
+        <item>Penghapus</item>
+        <item>Kursi</item>
+        <item>Lampu</item>
+    </string-array>
+
+    <string-array name="data_terjemahan1">
+        <item>Meja</item>
+        <item>Penghapus</item>
+        <item>Kursi</item>
+        <item>Lampu</item>
+
+    </string-array>
+
+    <string-array name="data_terjemahan2">
+        <item>Meja</item>
+        <item>Penghapus</item>
+        <item>Kursi</item>
+        <item>Lampu</item>
+    </string-array>
 </resources>
