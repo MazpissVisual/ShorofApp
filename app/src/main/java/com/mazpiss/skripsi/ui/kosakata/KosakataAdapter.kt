@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mazpiss.skripsi.databinding.ItemKosakataBinding
 
-class KosakataAdapter(private val listKosakata: ArrayList<Kosakata>) : RecyclerView.Adapter<KosakataAdapter.ListViewHolder>() {
+class KosakataAdapter(private var listKosakata: List<Kosakata>) : RecyclerView.Adapter<KosakataAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(private val binding: ItemKosakataBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(kosakata: Kosakata) {
-            binding.tvKosakata1.text = kosakata.kosakata1
-            binding.tvKosakata2.text = kosakata.kosakata2
-            binding.tvTerjemahan1.text = kosakata.terjemahan1
+            binding.tvKosakata1.text = kosakata.Terjemahan
+            binding.tvKosakata2.text = kosakata.Arab
+            binding.tvTerjemahan1.text = kosakata.Latin
         }
     }
 
@@ -24,5 +24,10 @@ class KosakataAdapter(private val listKosakata: ArrayList<Kosakata>) : RecyclerV
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.bind(listKosakata[position])
+    }
+
+    fun updateData(newList: List<Kosakata>) {
+        listKosakata = newList
+        notifyDataSetChanged()
     }
 }

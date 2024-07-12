@@ -7,18 +7,21 @@
     android:background="@color/blue_50"
     tools:context=".ui.home.HomeFragment">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/home_toolbar" />
+
     <TextView
         android:id="@+id/tvSalam"
         style="@style/paragraf3Bold"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="15dp"
         android:text="@string/salam"
         android:textColor="@color/blue_900"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
     <TextView
         android:id="@+id/tvSubSalam"
@@ -26,7 +29,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
         android:text="@string/subSalam"
         android:textColor="@color/blue_900"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
         android:background="@drawable/box"
         android:orientation="vertical"
@@ -85,7 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:text="@string/kosakata_harian"
         android:textColor="@color/blue_900"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +100,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
         android:text="@string/sub_kosakata_harian"
         android:textColor="@color/blue_900"
         app:layout_constraintEnd_toEndOf="parent"
@@ -139,10 +140,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/blue_900"
+                android:background="@color/blue_400"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="@string/arab"
+                android:text="@string/terjemahan"
                 android:textColor="@color/white" />
 
             <TextView
@@ -158,9 +159,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/blue_900"
+                android:background="@color/blue_400"
                 android:gravity="center"
-                android:text="@string/terjemahan"
+                android:text="@string/arab"
                 android:textColor="@color/white" />
 
         </LinearLayout>
@@ -178,17 +179,17 @@
             tools:itemCount="5"
             tools:listitem="@layout/item_kosakata" />
 
-        <Button
-            android:id="@+id/btnKosakata"
-            style="@style/textBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/box"
-            android:text="@string/lihat_lainnya"
-            android:textColor="@color/white" />
+<!--        <Button-->
+<!--            android:id="@+id/btnKosakata"-->
+<!--            style="@style/textBold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginBottom="20dp"-->
+<!--            android:background="@drawable/box"-->
+<!--            android:text="@string/lihat_lainnya"-->
+<!--            android:textColor="@color/white" />-->
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

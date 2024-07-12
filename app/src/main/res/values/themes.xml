@@ -7,7 +7,7 @@
     </style>
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/blue_400</item>
+        <item name="android:color">@color/white</item>
     </style>
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />

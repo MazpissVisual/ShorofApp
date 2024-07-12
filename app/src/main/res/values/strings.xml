@@ -23,6 +23,12 @@
     <string name="arab">Arab</string>
     <string name="latin">Latin</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="tentang_shorof">Mengenal Shorof Learn</string>
+    <string name="sub_mengenal_shorof">Aplikasi Shorof Learn merupkan aplikasi yang dibuat sebagai media pembelajaran ilmu Shorof secara dasar. Aplikasi ini memfasilitasi kebutuhan media pembelajaran bagi mahasiswa UNIDA Gontor dan masyarakat umum.</string>
+    <string name="sub_mengenal_shorof_2">Aplikasi ini dikembangkan sebagai tugas akhir Program Studi Teknik Informatik UNIDA Gontor</string>
+    <string name="back_button_description">back_button_description</string>
+    <string name="quiz_title">Uji Kemampuanmu</string>
+    <string name="quiz_subtitle">Mari Mengasah Keterampilan Anda \ndengan Tantangan Terbaru</string>
 
     <string-array name="data_kosakata_harian1">
         <item>Meja</item>

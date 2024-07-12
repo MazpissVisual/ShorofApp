@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/home_toolbar"
+    android:background="@color/blue_400">
+
+    <ImageButton
+        android:id="@+id/btnAbout"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/baseline_announcement_24"
+        android:layout_gravity="end|bottom"/>
+</androidx.appcompat.widget.Toolbar>

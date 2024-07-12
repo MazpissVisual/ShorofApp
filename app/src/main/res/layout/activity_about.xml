@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_50"
+    tools:context=".ui.aboutApp.AboutActivity">
+
+    <include
+        android:id="@+id/toolbar_about"
+        layout="@layout/about_custombar"/>
+
+    <TextView
+        android:id="@+id/tvMengenalShorof"
+        style="@style/paragraf3Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/tentang_shorof"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_about" />
+
+    <TextView
+        android:id="@+id/tvSubMengenalShorof"
+        style="@style/textReguler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/sub_mengenal_shorof"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMengenalShorof" />
+
+    <TextView
+        android:id="@+id/tvSubMengenalShorof2"
+        style="@style/textReguler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="55dp"
+        android:text="@string/sub_mengenal_shorof_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubMengenalShorof" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

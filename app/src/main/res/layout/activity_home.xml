@@ -12,7 +12,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:background="@color/white"
-        app:itemIconTint="@color/blue_50"
+        app:itemIconTint="@color/blue_400"
         app:itemTextColor="@color/blue_400"
         app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
         app:layout_constraintBottom_toBottomOf="parent"
