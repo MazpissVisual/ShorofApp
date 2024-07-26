@@ -1,20 +1,30 @@
 package com.mazpiss.skripsi.ui.materi
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.toObject
 import com.mazpiss.skripsi.databinding.FragmentMateriBinding
 
 class MateriFragment : Fragment() {
 
-    private var _binding: FragmentMateriBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private lateinit var viewModel: MateriViewModel
+    private lateinit var myAdapter: MateriAdapter
+    private var _binding : FragmentMateriBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,17 +32,22 @@ class MateriFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        val materiViewModel =
-            ViewModelProvider(this).get(MateriViewModel::class.java)
+        _binding = FragmentMateriBinding.inflate(inflater,container,false)
+        return binding.root
+    }
 
-        _binding = FragmentMateriBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(MateriViewModel::class.java)
 
-        val textView: TextView = binding.textDashboard
-        materiViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        binding.rvMateri.layoutManager = LinearLayoutManager(context)
+        binding.rvMateri.setHasFixedSize(true)
+        myAdapter = MateriAdapter(arrayListOf())
+        binding.rvMateri.adapter = myAdapter
+
+        viewModel.materiList.observe(viewLifecycleOwner, Observer { materialList->
+            myAdapter.updateData(materialList)
+        })
     }
 
     override fun onDestroyView() {

@@ -40,6 +40,6 @@ class FaqActivity : AppCompatActivity() {
                     "3. Nilai akhir akan muncul setelah kamu menyelesaikan semua soal."))
             add(FaqData("Tips dan Trik", "Sebelum mulai latihan, pastikan kamu memahami semua materi. Jika ada yang masih belum jelas, jangan ragu untuk berkonsultasi dengan pengajar."))
             }
-        adapter.notifyDataSetChanged()
+         adapter.notifyDataSetChanged()
     }
 }

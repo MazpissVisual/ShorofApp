@@ -29,6 +29,7 @@
     <string name="back_button_description">back_button_description</string>
     <string name="quiz_title">Uji Kemampuanmu</string>
     <string name="quiz_subtitle">Mari Mengasah Keterampilan Anda \ndengan Tantangan Terbaru</string>
+    <string name="sub_materi">Persiapkan niat dan semangat belajar, mari kita belajar ilmu Shorof bersama-sama</string>
 
     <string-array name="data_kosakata_harian1">
         <item>Meja</item>
