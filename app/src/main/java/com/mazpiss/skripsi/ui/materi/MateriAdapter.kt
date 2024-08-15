@@ -1,11 +1,14 @@
 package com.mazpiss.skripsi.ui.materi
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mazpiss.skripsi.R
+import com.mazpiss.skripsi.ui.materiDetail.DetailMateriActivity
+import com.mazpiss.skripsi.ui.materiDetail.MateriDetail
 
 class MateriAdapter(private var userList : List<Materi>): RecyclerView.Adapter<MateriAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MateriAdapter.MyViewHolder {
@@ -17,13 +20,20 @@ class MateriAdapter(private var userList : List<Materi>): RecyclerView.Adapter<M
         val materi : Materi = userList[position]
         holder.judul.text = materi.judul
         holder.totalPembahasan.text = materi.totalPembahasan
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context,DetailMateriActivity::class.java).apply {
+                putExtra("urutan", materi.judul)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
        return userList.size
     }
 
-    fun updateData(newList:List<Materi>){
+    fun updateData(newList: List<Materi>){
         userList = newList
         notifyDataSetChanged()
     }

@@ -24,10 +24,7 @@
             android:name=".ui.quiz.QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.quiztesting.TestActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.quiztesting.QuizActivityTest"
+            android:name=".ui.materiDetail.DetailMateriActivity"
             android:exported="false" />
         <activity
             android:name=".ui.aboutApp.AboutActivity"
