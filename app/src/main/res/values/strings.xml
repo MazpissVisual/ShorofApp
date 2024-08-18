@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Shorof Learn</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_home">Home</string>
     <string name="title_tentang">Tentang</string>
@@ -30,6 +30,8 @@
     <string name="quiz_title">Uji Kemampuanmu</string>
     <string name="quiz_subtitle">Mari Mengasah Keterampilan Anda \ndengan Tantangan Terbaru</string>
     <string name="sub_materi">Persiapkan niat dan semangat belajar, mari kita belajar ilmu Shorof bersama-sama</string>
+    <string name="lanjutkan_materi">Lanjutkan Materi</string>
+    <string name="fake_penjelasan">Isim Fa’il adalah bentuk kata benda yang menunjukkan pelaku dari sebuah tindakan atau perbuatan yang dijelaskan oleh fi’il (kata kerja).\n\nDalam bahasa Arab, Isim Fa’il biasanya dibentuk dari fi’il madhi (kata kerja lampau) dengan menambahkan beberapa perubahan pada akar kata.\n\nMisalnya:\n- kata kerja (كَتَبَ), Isim Fa’il-nya adalah (كَاتِبٌ)\n- kata kerja (قَتَلَ), Isim Fa’il-nya adalah (قَاتِلٌ)</string>
 
     <string-array name="data_kosakata_harian1">
         <item>Meja</item>

@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/blue_50"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue_50"
     tools:context=".ui.faq.FaqActivity">
 
     <include
@@ -13,20 +13,59 @@
         layout="@layout/custom_toolbar2"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvPanduan"
+    <LinearLayout
+        android:id="@+id/llContentHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Panduan Pengerjaan"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="20dp"
-        style="@style/paragraf3Bold"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_about" />
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/box"
+        android:backgroundTint="@color/white"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_about">
+
+        <TextView
+            style="@style/paragraf3Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
+            android:text="Panduan Belajar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/textReguler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Ikuti langkah-langkah ini \nSemangat dan periksa kembali \nSelamat mengerjakan!"
+                android:textColor="@color/blue_900" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/icon_learn"
+                android:contentDescription="@string/title_home" />
+        </LinearLayout>
+    </LinearLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFaq"
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
         android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPanduan" />
+        app:layout_constraintTop_toBottomOf="@+id/llContentHome" />
 </androidx.constraintlayout.widget.ConstraintLayout>

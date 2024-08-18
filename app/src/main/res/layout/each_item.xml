@@ -23,15 +23,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/logoIv"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/baseline_arrow_right_alt_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
@@ -48,9 +39,9 @@
         <TextView
             android:id="@+id/langDesc"
             android:layout_width="0dp"
+            style="@style/textReguler"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:justificationMode="inter_word"
             android:text="Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

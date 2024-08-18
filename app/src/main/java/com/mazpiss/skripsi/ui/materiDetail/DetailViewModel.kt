@@ -24,7 +24,8 @@ class DetailViewModel : ViewModel() {
                 for (document in documents) {
                     subMateriArrayList.add(document.toObject(MateriDetail::class.java))
                 }
-                _subMateriList.value = subMateriArrayList
+                val sortedList = subMateriArrayList.sortedBy { it.subJudul }
+                _subMateriList.value = sortedList
             }
             .addOnFailureListener { exception ->
                 // Handle error
