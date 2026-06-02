@@ -1,68 +1,66 @@
 package com.mazpiss.skripsi.ui.quizList
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mazpiss.skripsi.ui.quiz.QuestionModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class QuizListViewModel :ViewModel() {
-    private val _questionModelList = MutableLiveData<List<QuestionModel>>()
-    val questionModelList : LiveData<List<QuestionModel>> get() = _questionModelList
+data class QuizListUiState(
+    val questions: List<QuestionModel> = emptyList(),
+    val currentIndex: Int = 0,
+    val selectedAnswer: String = "",
+    val score: Int = 0,
+    val timeRemaining: Long = 0L,
+    val isFinished: Boolean = false
+)
 
-    private val _currentQuestionIndex = MutableLiveData<Int>()
-    val currentQuestionIndex:LiveData<Int> get() = _currentQuestionIndex
+class QuizListViewModel : ViewModel() {
 
-    private val _selectedAnswer = MutableLiveData<String>()
-    val selectedAnswer: LiveData<String>get() = _selectedAnswer
+    private val _uiState = MutableStateFlow(QuizListUiState())
+    val uiState: StateFlow<QuizListUiState> = _uiState.asStateFlow()
 
-    private val _score = MutableLiveData<Int>()
-    val score:LiveData<Int>get() = _score
-
-    private val _timer = MutableLiveData<Long>()
-    val timer : LiveData<Long>get() = _timer
-
-    private val _isQuizFinished = MutableLiveData<Boolean>()
-    val isQuizFinished : LiveData<Boolean>get() = _isQuizFinished
-
-    init {
-        _currentQuestionIndex.value = 0
-        _selectedAnswer.value = ""
-        _score.value = 0
-        _isQuizFinished.value = false
+    fun startQuiz(questions: List<QuestionModel>, time: String) {
+        _uiState.update { it.copy(questions = questions) }
+        startTimer(time.toInt())
     }
 
-    fun startQuiz(questions:List<QuestionModel>,time:String){
-        _questionModelList.value = questions
-        startTime(time.toInt())
-    }
-
-    private fun startTime(totalTimeInMinutes: Int) {
-        val totalTimeInMills = totalTimeInMinutes * 60 * 1000L
-        viewModelScope.launch (Dispatchers.Main ){
-            for (time in totalTimeInMills downTo 0 step 1000L){
-                _timer.value = time
-                kotlinx.coroutines.delay(1000L)
+    private fun startTimer(totalMinutes: Int) {
+        val totalMs = totalMinutes * 60 * 1000L
+        viewModelScope.launch(Dispatchers.Main) {
+            for (time in totalMs downTo 0 step 1000L) {
+                _uiState.update { it.copy(timeRemaining = time) }
+                delay(1000L)
             }
-            _isQuizFinished.value = true
+            _uiState.update { it.copy(isFinished = true) }
         }
     }
 
-    fun selectedAnswer(answer:String){
-        _selectedAnswer.value = answer
+    fun selectAnswer(answer: String) {
+        _uiState.update { it.copy(selectedAnswer = answer) }
     }
 
-    fun nextQuestion(){
-        if (_selectedAnswer.value == questionModelList.value?.get(_currentQuestionIndex.value!!)?.correct){
-            _score.value = _score.value?.plus(1)
+    fun nextQuestion(): Boolean {
+        val state = _uiState.value
+        if (state.selectedAnswer.isEmpty()) return false
+
+        var newScore = state.score
+        if (state.selectedAnswer == state.questions[state.currentIndex].correct) {
+            newScore += 1
         }
-        if (_currentQuestionIndex.value!! <questionModelList.value!!.size-1){
-            _currentQuestionIndex.value = _currentQuestionIndex.value?.plus(1)
-            _selectedAnswer.value = ""
-        }else{
-            _isQuizFinished.value = true
+
+        if (state.currentIndex < state.questions.size - 1) {
+            _uiState.update {
+                it.copy(score = newScore, currentIndex = it.currentIndex + 1, selectedAnswer = "")
+            }
+        } else {
+            _uiState.update { it.copy(score = newScore, isFinished = true) }
         }
+        return true
     }
 }

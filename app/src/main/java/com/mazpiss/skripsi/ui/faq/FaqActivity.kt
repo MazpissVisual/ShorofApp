@@ -1,45 +1,236 @@
 package com.mazpiss.skripsi.ui.faq
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.mazpiss.skripsi.R
+import com.mazpiss.skripsi.ui.components.ShorofToolbar
+import com.mazpiss.skripsi.ui.theme.Blue900
+import com.mazpiss.skripsi.ui.theme.ShorofTheme
 
-class FaqActivity : AppCompatActivity() {
-    private lateinit var recyclerView: RecyclerView
-    private val mList = mutableListOf<FaqData>()
-    private lateinit var adapter: FaqAdapter
-
+class FaqActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_faq)
-
-        setupViews()
-        setupRecyclerView()
-        addDataToList()
-    }
-
-    private fun setupViews() {
-        recyclerView = findViewById(R.id.rvFaq)
-    }
-
-    private fun setupRecyclerView() {
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = FaqAdapter(mList)
-        recyclerView.adapter = adapter
-    }
-
-    private fun addDataToList() {
-        mList.apply {
-            add(FaqData("Persiapan Sebelum Latihan", "Sebelum memulai latihan, pastikan kamu telah membaca dan memahami materi yang dipelajari. Jangan lupa untuk berdoa agar diberikan kemudahan dan kelancaran dalam mengerjakannya. Semangat belajar!"))
-            add(FaqData("Instruktur Umum", "1. Setiap latihan memiliki durasi pengerjaan yang berbeda-beda, jadi pastikan kamu memeriksa waktu yang tersedia sebelum memulai.\n\n2. Jenis Soal dalam latihan ini berbentuk pilihan ganda, sehingga kamu bisa memilih jawaban yang paling tepat dari beberapa opsi yang diberikan."))
-            add(FaqData("Langkah Pengerjaan", "1. Silakan pilih latihan yang ingin kamu kerjakan.\n\n" +
-                    "2. Pilih salah satu jawaban yang paling benar dari setiap soal yang diberikan.\n\n" +
-                    "3. Nilai akhir akan muncul setelah kamu menyelesaikan semua soal."))
-            add(FaqData("Tips dan Trik", "Sebelum mulai latihan, pastikan kamu memahami semua materi. Jika ada yang masih belum jelas, jangan ragu untuk berkonsultasi dengan pengajar."))
+        enableEdgeToEdge()
+        setContent {
+            ShorofTheme {
+                FaqScreen(
+                    onBackClick = { finish() }
+                )
             }
-         adapter.notifyDataSetChanged()
+        }
+    }
+}
+
+@Composable
+fun FaqScreen(
+    onBackClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val faqItems = listOf(
+        FaqData(
+            title = stringResource(R.string.faq_item1_title),
+            desc = stringResource(R.string.faq_item1_desc)
+        ),
+        FaqData(
+            title = stringResource(R.string.faq_item2_title),
+            desc = stringResource(R.string.faq_item2_desc)
+        ),
+        FaqData(
+            title = stringResource(R.string.faq_item3_title),
+            desc = stringResource(R.string.faq_item3_desc)
+        ),
+        FaqData(
+            title = stringResource(R.string.faq_item4_title),
+            desc = stringResource(R.string.faq_item4_desc)
+        )
+    )
+
+    var expandedIndex by remember { mutableStateOf<Int?>(null) }
+
+    Scaffold(
+        modifier = modifier.fillMaxSize(),
+        topBar = {
+            ShorofToolbar(
+                title = stringResource(R.string.faq_title),
+                onBackClick = onBackClick
+            )
+        }
+    ) { paddingValues ->
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(paddingValues)
+                .padding(horizontal = 16.dp)
+        ) {
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
+                // Header Card Panduan Belajar
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.padding(20.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(
+                                text = stringResource(R.string.faq_header_title),
+                                style = MaterialTheme.typography.titleMedium,
+                                color = Blue900,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = stringResource(R.string.faq_header_desc),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = Blue900.copy(alpha = 0.8f),
+                                lineHeight = 18.sp
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(16.dp))
+                        Image(
+                            painter = painterResource(id = R.drawable.icon_learn),
+                            contentDescription = null,
+                            modifier = Modifier.size(72.dp)
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+            }
+
+            itemsIndexed(faqItems) { index, faq ->
+                val isExpanded = expandedIndex == index
+                FaqItemCard(
+                    faq = faq,
+                    isExpanded = isExpanded,
+                    onToggle = {
+                        expandedIndex = if (isExpanded) null else index
+                    }
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun FaqItemCard(
+    faq: FaqData,
+    isExpanded: Boolean,
+    onToggle: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val rotationState by animateFloatAsState(
+        targetValue = if (isExpanded) 180f else 0f,
+        label = "rotation"
+    )
+
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable(onClick = onToggle)
+            .animateContentSize(),
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = faq.title,
+                    style = MaterialTheme.typography.titleMedium.copy(fontSize = 16.sp),
+                    color = Blue900,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1f)
+                )
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowDown,
+                    contentDescription = if (isExpanded) "Collapse" else "Expand",
+                    tint = Blue900,
+                    modifier = Modifier
+                        .size(24.dp)
+                        .rotate(rotationState)
+                )
+            }
+
+            AnimatedVisibility(visible = isExpanded) {
+                Column {
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text(
+                        text = faq.desc,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Blue900.copy(alpha = 0.85f),
+                        lineHeight = 22.sp
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun FaqScreenPreview() {
+    ShorofTheme {
+        FaqScreen(onBackClick = {})
     }
 }

@@ -1,50 +1,48 @@
 package com.mazpiss.skripsi.ui.quiz
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.database.DatabaseException
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
-class QuizViewModel:ViewModel() {
-    private val _quizModelList = MutableLiveData<List<QuizModel>>()
-    val quizModelList: LiveData<List<QuizModel>> get() = _quizModelList
+data class QuizUiState(
+    val isLoading: Boolean = false,
+    val quizList: List<QuizModel> = emptyList(),
+    val error: String? = null
+)
 
-    private val _loading = MutableLiveData<Boolean>()
-    val loading:LiveData<Boolean>get() = _loading
+class QuizViewModel : ViewModel() {
 
-    private val _error = MutableLiveData<String>()
-    val error : LiveData<String>get() = _error
+    private val _uiState = MutableStateFlow(QuizUiState())
+    val uiState: StateFlow<QuizUiState> = _uiState.asStateFlow()
 
     init {
         getDataFromFirebase()
     }
 
     private fun getDataFromFirebase() {
-        _loading.value = true
+        _uiState.update { it.copy(isLoading = true) }
         FirebaseDatabase.getInstance().reference.child("quizzes")
             .get()
-            .addOnSuccessListener { dataSpapshot->
-                if (dataSpapshot.exists()){
-                    val tempList = mutableListOf<QuizModel>()
-                    for (snapshot in dataSpapshot.children){
+            .addOnSuccessListener { snapshot ->
+                val list = mutableListOf<QuizModel>()
+                if (snapshot.exists()) {
+                    for (child in snapshot.children) {
                         try {
-                            val quizModel = snapshot.getValue(QuizModel::class.java)
-                            if (quizModel != null){
-                                tempList.add(quizModel)
-                            }
-                        }catch (e:DatabaseException){
-                            _error.value = "Failed To Convert Value"
+                            val model = child.getValue(QuizModel::class.java)
+                            if (model != null) list.add(model)
+                        } catch (e: DatabaseException) {
+                            _uiState.update { it.copy(error = "Gagal memuat data") }
                         }
                     }
-                    _quizModelList.value = tempList
                 }
-                _loading.value = false
+                _uiState.update { it.copy(isLoading = false, quizList = list) }
             }
-            .addOnFailureListener{exception->
-                _error.value = "error getting data"
-                _loading.value = false
+            .addOnFailureListener {
+                _uiState.update { it.copy(isLoading = false, error = "Error mengambil data") }
             }
     }
 }

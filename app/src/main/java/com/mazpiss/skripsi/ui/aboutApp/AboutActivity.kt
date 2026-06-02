@@ -1,51 +1,118 @@
 package com.mazpiss.skripsi.ui.aboutApp
 
-import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.WindowInsetsController
-import android.widget.ImageButton
-import android.widget.TextView
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.mazpiss.skripsi.R
-import com.mazpiss.skripsi.databinding.ActivityAboutBinding
+import com.mazpiss.skripsi.ui.components.ShorofToolbar
+import com.mazpiss.skripsi.ui.theme.Blue900
+import com.mazpiss.skripsi.ui.theme.ShorofTheme
 
-class AboutActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityAboutBinding
+class AboutActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAboutBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(binding.root)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = resources.getColor(R.color.blue_400)
+        setContent {
+            ShorofTheme {
+                AboutScreen(
+                    onBackClick = { finish() }
+                )
+            }
         }
+    }
+}
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.setSystemBarsAppearance(
-                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+@Composable
+fun AboutScreen(
+    onBackClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Scaffold(
+        modifier = modifier.fillMaxSize(),
+        topBar = {
+            ShorofToolbar(
+                title = stringResource(id = R.string.tentang_aplikasi),
+                onBackClick = onBackClick
             )
-        } else {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
-
-        setSupportActionBar(findViewById(R.id.toolbar_about))
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-
-        findViewById<ImageButton>(R.id.back_button).setOnClickListener {
-            onBackPressed()
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(paddingValues)
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp)
+        ) {
+            Spacer(modifier = Modifier.height(8.dp))
+            
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+            ) {
+                Column(
+                    modifier = Modifier.padding(20.dp)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.tentang_shorof),
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Blue900,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp
+                    )
+                    
+                    Spacer(modifier = Modifier.height(14.dp))
+                    
+                    Text(
+                        text = stringResource(id = R.string.sub_mengenal_shorof),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Blue900.copy(alpha = 0.85f),
+                        lineHeight = 22.sp
+                    )
+                    
+                    Spacer(modifier = Modifier.height(16.dp))
+                    
+                    Text(
+                        text = stringResource(id = R.string.sub_mengenal_shorof_2),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Blue900.copy(alpha = 0.85f),
+                        lineHeight = 22.sp
+                    )
+                }
+            }
         }
-        findViewById<TextView>(R.id.toolbar_title).text = getString(R.string.tentang_aplikasi)
+    }
+}
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
+@Preview(showBackground = true)
+@Composable
+fun AboutScreenPreview() {
+    ShorofTheme {
+        AboutScreen(onBackClick = {})
     }
 }

@@ -1,37 +1,35 @@
 package com.mazpiss.skripsi.ui.materiDetail
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.mazpiss.skripsi.databinding.ActivityDetailMateriBinding
-import com.mazpiss.skripsi.ui.detail.DetailViewModel
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import com.mazpiss.skripsi.ui.materiShorof.MateriShorofActivity
+import com.mazpiss.skripsi.ui.theme.ShorofTheme
 
-
-class DetailMateriActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityDetailMateriBinding
-    private lateinit var viewModel: DetailViewModel
-    private lateinit var myAdapter: SubMateriAdapter
+class DetailMateriActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailMateriBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        enableEdgeToEdge()
 
-        val materiId  = intent.getStringExtra("urutan")
+        val materiJudul = intent.getStringExtra("urutan")
 
-        viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
-        viewModel.loadSubMateri(materiId )
-
-        binding.rvDetailMateri.layoutManager = LinearLayoutManager(this)
-        binding.rvDetailMateri.setHasFixedSize(true)
-        myAdapter = SubMateriAdapter(arrayListOf())
-        binding.rvDetailMateri.adapter = myAdapter
-
-        viewModel.subMateriList.observe(this) { subMateriList ->
-            myAdapter.updateData(subMateriList)
+        setContent {
+            ShorofTheme {
+                DetailMateriScreen(
+                    materiJudul = materiJudul,
+                    onBackClick = { finish() },
+                    onSubMateriClick = { subMateri ->
+                        val intent = Intent(this, MateriShorofActivity::class.java).apply {
+                            putExtra("subJudul", subMateri.subJudul)
+                            putExtra("content", subMateri.content)
+                        }
+                        startActivity(intent)
+                    }
+                )
+            }
         }
     }
 }

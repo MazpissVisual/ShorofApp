@@ -1,42 +1,38 @@
 package com.mazpiss.skripsi.ui.materi
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.toObject
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+
+data class MateriUiState(
+    val isLoading: Boolean = false,
+    val materiList: List<Materi> = emptyList()
+)
 
 class MateriViewModel : ViewModel() {
 
-    private val _materiList = MutableLiveData<List<Materi>>()
-    val materiList: LiveData<List<Materi>> get() = _materiList
     private val db = FirebaseFirestore.getInstance()
+    private val _uiState = MutableStateFlow(MateriUiState())
+    val uiState: StateFlow<MateriUiState> = _uiState.asStateFlow()
 
     init {
         fetchMateriData()
     }
 
     private fun fetchMateriData() {
-        db.collection("Materi").orderBy("totalPembahasan",Query.Direction.ASCENDING)
-            .addSnapshotListener(object :EventListener<QuerySnapshot>{
-                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                    if (error !=null){
-                        return
-                    }
-                    val materiArrayList = arrayListOf<Materi>()
-                    for (dc:DocumentChange in value?.documentChanges!!){
-                        if (dc.type == DocumentChange.Type.ADDED){
-                            materiArrayList.add(dc.document.toObject(Materi::class.java))
-                        }
-                    }
-                    _materiList.value = materiArrayList
+        _uiState.update { it.copy(isLoading = true) }
+        db.collection("Materi").orderBy("totalPembahasan", Query.Direction.ASCENDING)
+            .addSnapshotListener { value, error ->
+                if (error != null) {
+                    _uiState.update { it.copy(isLoading = false) }
+                    return@addSnapshotListener
                 }
-
-            })
+                val list = value?.documents?.mapNotNull { it.toObject(Materi::class.java) } ?: emptyList()
+                _uiState.update { it.copy(isLoading = false, materiList = list) }
+            }
     }
 }

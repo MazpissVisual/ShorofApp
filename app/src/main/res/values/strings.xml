@@ -31,6 +31,36 @@
     <string name="quiz_subtitle">Mari Mengasah Keterampilan Anda \ndengan Tantangan Terbaru</string>
     <string name="sub_materi">Persiapkan niat dan semangat belajar, mari kita belajar ilmu Shorof bersama-sama</string>
     <string name="lanjutkan_materi">Lanjutkan Materi</string>
+
+    <!-- Test/Quiz Screen -->
+    <string name="test_subtitle">Kamu Sudah Paham Dengan Materinya?\nMari kita Melanjutkan Mengerjakan Latihan Soal</string>
+    <string name="test_start_title">Tes Kemampuanmu Sekarang</string>
+    <string name="test_start_subtitle">Siap? Mulai Sekarang!</string>
+    <string name="test_rules_title">Panduan Pengerjaan</string>
+    <string name="test_rules_subtitle">Petunjuk Praktis Pengerjaan</string>
+    <string name="latihan_soal">Latihan Soal</string>
+    <string name="alur_pembelajaran">Alur Pembelajaran</string>
+    <string name="pilih_dulu">Pilih jawaban terlebih dahulu</string>
+    <string name="lanjut">Lanjut</string>
+    <string name="selesai">Selesai</string>
+    <string name="score_good">Pencapaian yang Baik! Teruskan!</string>
+    <string name="score_bad">Tetap Semangat, Pelajari Lagi Materinya</string>
+    <string name="score_detail">%1$s dari %2$s pertanyaan terjawab dengan benar</string>
+    <string name="pertanyaan_format">Pertanyaan %1$d/%2$d</string>
+    <string name="menit_format">%s Min</string>
+
+    <!-- FAQ -->
+    <string name="faq_title">Panduan Latihan</string>
+    <string name="faq_header_title">Panduan Belajar</string>
+    <string name="faq_header_desc">Ikuti langkah-langkah ini \nSemangat dan periksa kembali \nSelamat mengerjakan!</string>
+    <string name="faq_item1_title">Persiapan Sebelum Latihan</string>
+    <string name="faq_item1_desc">Sebelum memulai latihan, pastikan kamu telah membaca dan memahami materi yang dipelajari. Jangan lupa untuk berdoa agar diberikan kemudahan dan kelancaran dalam mengerjakannya. Semangat belajar!</string>
+    <string name="faq_item2_title">Instruktur Umum</string>
+    <string name="faq_item2_desc">1. Setiap latihan memiliki durasi pengerjaan yang berbeda-beda, jadi pastikan kamu memeriksa waktu yang tersedia sebelum memulai.\n\n2. Jenis Soal dalam latihan ini berbentuk pilihan ganda, sehingga kamu bisa memilih jawaban yang paling tepat dari beberapa opsi yang diberikan.</string>
+    <string name="faq_item3_title">Langkah Pengerjaan</string>
+    <string name="faq_item3_desc">1. Silakan pilih latihan yang ingin kamu kerjakan.\n\n2. Pilih salah satu jawaban yang paling benar dari setiap soal yang diberikan.\n\n3. Nilai akhir akan muncul setelah kamu menyelesaikan semua soal.</string>
+    <string name="faq_item4_title">Tips dan Trik</string>
+    <string name="faq_item4_desc">Sebelum mulai latihan, pastikan kamu memahami semua materi. Jika ada yang masih belum jelas, jangan ragu untuk berkonsultasi dengan pengajar.</string>
     <string name="fake_penjelasan">Isim Fa’il adalah bentuk kata benda yang menunjukkan pelaku dari sebuah tindakan atau perbuatan yang dijelaskan oleh fi’il (kata kerja).\n\nDalam bahasa Arab, Isim Fa’il biasanya dibentuk dari fi’il madhi (kata kerja lampau) dengan menambahkan beberapa perubahan pada akar kata.\n\nMisalnya:\n- kata kerja (كَتَبَ), Isim Fa’il-nya adalah (كَاتِبٌ)\n- kata kerja (قَتَلَ), Isim Fa’il-nya adalah (قَاتِلٌ)</string>
 
     <string-array name="data_kosakata_harian1">
