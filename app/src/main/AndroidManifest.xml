@@ -12,50 +12,26 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/aplikasi"
         android:supportsRtl="true"
+        android:name=".ShorofApplication"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.materiShorof.MateriShorofActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".ui.faq.FaqActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".ui.quizList.QuizListActivty"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".ui.quiz.QuizActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".ui.materiDetail.DetailMateriActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".ui.aboutApp.AboutActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+
         <activity
             android:name=".HomeActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_home" />
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+
         <activity
             android:name=".Logoscreen"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

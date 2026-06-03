@@ -21,7 +21,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mazpiss.skripsi.R
 import com.mazpiss.skripsi.ui.components.ShorofToolbar
-import com.mazpiss.skripsi.ui.theme.Blue900
 import com.mazpiss.skripsi.ui.theme.ShorofTheme
 
 @Composable
@@ -54,16 +53,16 @@ fun MateriShorofScreen(
                     text = subJudul,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
-                    color = Blue900,
+                    color = MaterialTheme.colorScheme.onSurface,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 15.dp, top = 12.dp, end = 15.dp)
+                        .padding(start = 16.dp, top = 12.dp, end = 16.dp)
                 )
                 Text(
                     text = content,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Blue900,
+                    color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier
                         .weight(1f)
                         .verticalScroll(rememberScrollState())

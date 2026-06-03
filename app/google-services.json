@@ -1,8 +1,9 @@
 {
   "project_info": {
     "project_number": "909796220083",
+    "firebase_url": "https://shorof-learning-default-rtdb.firebaseio.com",
     "project_id": "shorof-learning",
-    "storage_bucket": "shorof-learning.appspot.com"
+    "storage_bucket": "shorof-learning.firebasestorage.app"
   },
   "client": [
     {
@@ -12,7 +13,20 @@
           "package_name": "com.mazpiss.skripsi"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "909796220083-ffu3k9ghc3i5paqppta67re9dv5clfoa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mazpiss.skripsi",
+            "certificate_hash": "a44b0e467c9dad4b44eb9764254db891fd7bac13"
+          }
+        },
+        {
+          "client_id": "909796220083-d94ic33rha8mv5ts8v6j6h6gjtdjf34s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAylbFGQwoankUv86YIeN8arIbFQE9CWl4"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909796220083-d94ic33rha8mv5ts8v6j6h6gjtdjf34s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

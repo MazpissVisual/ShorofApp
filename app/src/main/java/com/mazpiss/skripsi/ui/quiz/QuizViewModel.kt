@@ -1,12 +1,15 @@
 package com.mazpiss.skripsi.ui.quiz
 
 import androidx.lifecycle.ViewModel
-import com.google.firebase.database.DatabaseException
-import com.google.firebase.database.FirebaseDatabase
+import androidx.lifecycle.viewModelScope
+import com.mazpiss.skripsi.domain.repository.QuizRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 data class QuizUiState(
     val isLoading: Boolean = false,
@@ -14,35 +17,27 @@ data class QuizUiState(
     val error: String? = null
 )
 
-class QuizViewModel : ViewModel() {
+@HiltViewModel
+class QuizViewModel @Inject constructor(
+    private val quizRepository: QuizRepository
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(QuizUiState())
     val uiState: StateFlow<QuizUiState> = _uiState.asStateFlow()
 
     init {
-        getDataFromFirebase()
+        fetchQuizList()
     }
 
-    private fun getDataFromFirebase() {
+    private fun fetchQuizList() {
         _uiState.update { it.copy(isLoading = true) }
-        FirebaseDatabase.getInstance().reference.child("quizzes")
-            .get()
-            .addOnSuccessListener { snapshot ->
-                val list = mutableListOf<QuizModel>()
-                if (snapshot.exists()) {
-                    for (child in snapshot.children) {
-                        try {
-                            val model = child.getValue(QuizModel::class.java)
-                            if (model != null) list.add(model)
-                        } catch (e: DatabaseException) {
-                            _uiState.update { it.copy(error = "Gagal memuat data") }
-                        }
-                    }
-                }
+        viewModelScope.launch {
+            try {
+                val list = quizRepository.getQuizList()
                 _uiState.update { it.copy(isLoading = false, quizList = list) }
+            } catch (e: Exception) {
+                _uiState.update { it.copy(isLoading = false, error = "Gagal memuat data quiz") }
             }
-            .addOnFailureListener {
-                _uiState.update { it.copy(isLoading = false, error = "Error mengambil data") }
-            }
+        }
     }
 }

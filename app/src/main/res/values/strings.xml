@@ -5,15 +5,13 @@
     <string name="title_tentang">Tentang</string>
     <string name="title_quiz">Quiz</string>
     <string name="title_materi">Materi</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="deskripsi_aplikasi">Deskripsi Aplikasi</string>
     <string name="sub_text_deskripsi1">Aplikasi Shorof Learn merupkan aplikasi yang dibuat sebagai media pembelajaran ilmu Shorof secara dasar. Aplikasi ini memfasilitasi kebutuhan media pembelajaran bagi mahasiswa UNIDA  Gontor dan masyarakat umum.</string>
     <string name="sub_text_deskripsi2">Aplikasi ini dikembangkan sebagai tugas akhir Program Studi Teknik Informatik UNIDA Gontor</string>
     <string name="deskripsi_pengembang">Havidz Muhammad Iqbal, mahasiswa Teknik Informatika di UNIDA Gontor, fokus pada pengembangan perangkat lunak, serta aktif dalam kegiatan  kampus.</string>
     <string name="salam">Assalamualaikum</string>
     <string name="subSalam">Mari mempelajari ilmu Shorof dengan asik \ndan menyenangkan sekarang !</string>
-    <string name="kosakata">kosakata</string>
+    <string name="kosakata">Kosakata</string>
     <string name="terjemahan">Terjemahan</string>
     <string name="kosakata_harian">Kosakata Harian</string>
     <string name="mari_belajar">Mari Belajar !</string>
@@ -26,11 +24,48 @@
     <string name="tentang_shorof">Mengenal Shorof Learn</string>
     <string name="sub_mengenal_shorof">Aplikasi Shorof Learn merupkan aplikasi yang dibuat sebagai media pembelajaran ilmu Shorof secara dasar. Aplikasi ini memfasilitasi kebutuhan media pembelajaran bagi mahasiswa UNIDA Gontor dan masyarakat umum.</string>
     <string name="sub_mengenal_shorof_2">Aplikasi ini dikembangkan sebagai tugas akhir Program Studi Teknik Informatik UNIDA Gontor</string>
-    <string name="back_button_description">back_button_description</string>
+    <string name="back_button_description">Kembali</string>
     <string name="quiz_title">Uji Kemampuanmu</string>
     <string name="quiz_subtitle">Mari Mengasah Keterampilan Anda \ndengan Tantangan Terbaru</string>
     <string name="sub_materi">Persiapkan niat dan semangat belajar, mari kita belajar ilmu Shorof bersama-sama</string>
     <string name="lanjutkan_materi">Lanjutkan Materi</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_skip">Lewati</string>
+    <string name="onboarding_next">Lanjutkan</string>
+    <string name="onboarding_start">Mulai Sekarang</string>
+    <string name="onboarding_title_1">Selamat Datang di Shorof</string>
+    <string name="onboarding_desc_1">Cara termudah untuk mempelajari Morfologi Bahasa Arab secara terstruktur dan mendalam.</string>
+    <string name="onboarding_title_2">Pantau Kemajuan Anda</string>
+    <string name="onboarding_desc_2">Simpan rentetan belajar dan status pencapaian Anda untuk memotivasi perjalanan belajar setiap hari.</string>
+    <string name="onboarding_title_3">Belajar di Mana Saja</string>
+    <string name="onboarding_desc_3">Dukungan mode offline untuk kenyamanan Anda belajar kapan saja, bahkan tanpa koneksi internet.</string>
+
+    <!-- Home / Progress Dashboard -->
+    <string name="home_greeting">Ahlan,</string>
+    <string name="home_progress_label">Progress Keseluruhan</string>
+    <string name="home_streak_label">Daily Streak</string>
+    <string name="home_xp_label">Poin XP</string>
+    <string name="home_progress_section">Progress Belajar Kamu</string>
+    <string name="home_weekly_activity">Aktivitas Mingguan</string>
+    <string name="home_lihat_semua">Lihat Semua</string>
+    <string name="home_settings">Pengaturan</string>
+
+    <!-- Materi -->
+    <string name="materi_search_hint">Cari materi shorof…</string>
+    <string name="materi_semua">Semua</string>
+    <string name="materi_dasar">Materi Dasar</string>
+    <string name="alur_pembelajaran">Alur Pembelajaran</string>
+
+    <!-- Kosakata -->
+    <string name="kosakata_search_hint">Cari kosakata…</string>
+    <string name="kosakata_semua_kategori">Semua Kategori</string>
+
+    <!-- Quiz -->
+    <string name="quiz_pilih_kategori">Pilih Kategori Kuis</string>
+    <string name="quiz_mulai">Mulai Kuis</string>
+    <string name="quiz_soal_format">Soal %1$d dari %2$d</string>
+    <string name="quiz_waktu_tersisa">Waktu Tersisa</string>
 
     <!-- Test/Quiz Screen -->
     <string name="test_subtitle">Kamu Sudah Paham Dengan Materinya?\nMari kita Melanjutkan Mengerjakan Latihan Soal</string>
@@ -39,7 +74,6 @@
     <string name="test_rules_title">Panduan Pengerjaan</string>
     <string name="test_rules_subtitle">Petunjuk Praktis Pengerjaan</string>
     <string name="latihan_soal">Latihan Soal</string>
-    <string name="alur_pembelajaran">Alur Pembelajaran</string>
     <string name="pilih_dulu">Pilih jawaban terlebih dahulu</string>
     <string name="lanjut">Lanjut</string>
     <string name="selesai">Selesai</string>
@@ -61,7 +95,7 @@
     <string name="faq_item3_desc">1. Silakan pilih latihan yang ingin kamu kerjakan.\n\n2. Pilih salah satu jawaban yang paling benar dari setiap soal yang diberikan.\n\n3. Nilai akhir akan muncul setelah kamu menyelesaikan semua soal.</string>
     <string name="faq_item4_title">Tips dan Trik</string>
     <string name="faq_item4_desc">Sebelum mulai latihan, pastikan kamu memahami semua materi. Jika ada yang masih belum jelas, jangan ragu untuk berkonsultasi dengan pengajar.</string>
-    <string name="fake_penjelasan">Isim Fa’il adalah bentuk kata benda yang menunjukkan pelaku dari sebuah tindakan atau perbuatan yang dijelaskan oleh fi’il (kata kerja).\n\nDalam bahasa Arab, Isim Fa’il biasanya dibentuk dari fi’il madhi (kata kerja lampau) dengan menambahkan beberapa perubahan pada akar kata.\n\nMisalnya:\n- kata kerja (كَتَبَ), Isim Fa’il-nya adalah (كَاتِبٌ)\n- kata kerja (قَتَلَ), Isim Fa’il-nya adalah (قَاتِلٌ)</string>
+    <string name="fake_penjelasan">Isim Fa\'il adalah bentuk kata benda yang menunjukkan pelaku dari sebuah tindakan atau perbuatan yang dijelaskan oleh fi\'il (kata kerja).\n\nDalam bahasa Arab, Isim Fa\'il biasanya dibentuk dari fi\'il madhi (kata kerja lampau) dengan menambahkan beberapa perubahan pada akar kata.\n\nMisalnya:\n- kata kerja (كَتَبَ), Isim Fa\'il-nya adalah (كَاتِبٌ)\n- kata kerja (قَتَلَ), Isim Fa\'il-nya adalah (قَاتِلٌ)</string>
 
     <string-array name="data_kosakata_harian1">
         <item>Meja</item>
@@ -82,7 +116,6 @@
         <item>Penghapus</item>
         <item>Kursi</item>
         <item>Lampu</item>
-
     </string-array>
 
     <string-array name="data_terjemahan2">
@@ -91,4 +124,10 @@
         <item>Kursi</item>
         <item>Lampu</item>
     </string-array>
+
+    <!-- Accessibility -->
+    <string name="durasi_quiz">Durasi quiz</string>
+    <string name="sisa_waktu">Sisa waktu</string>
+    <string name="ilustrasi_quiz">Ilustrasi quiz</string>
+    <string name="profil_pengguna">Profil pengguna</string>
 </resources>
