@@ -18,7 +18,8 @@ data class HomeUiState(
     val isLoading: Boolean = false,
     val isRefreshing: Boolean = false,
     val displayName: String = "",
-    val progress: UserProgress = UserProgress()
+    val progress: UserProgress = UserProgress(),
+    val errorMessage: String? = null
 )
 
 @HiltViewModel
@@ -39,10 +40,10 @@ class HomeViewModel @Inject constructor(
     }
 
     fun refresh() {
-        _uiState.update { it.copy(isRefreshing = true) }
+        _uiState.update { it.copy(isRefreshing = true, errorMessage = null) }
         viewModelScope.launch {
             progressRepository.getUserProgress(userId)
-                .catch { _uiState.update { it.copy(isRefreshing = false) } }
+                .catch { _uiState.update { it.copy(isRefreshing = false, errorMessage = "Gagal memuat data, tarik lagi untuk coba ulang") } }
                 .collect { progress ->
                     _uiState.update { it.copy(isRefreshing = false, progress = progress) }
                 }
@@ -51,10 +52,10 @@ class HomeViewModel @Inject constructor(
 
     private fun fetchProgress() {
         if (userId.isEmpty()) return
-        _uiState.update { it.copy(isLoading = true) }
+        _uiState.update { it.copy(isLoading = true, errorMessage = null) }
         viewModelScope.launch {
             progressRepository.getUserProgress(userId)
-                .catch { _uiState.update { it.copy(isLoading = false) } }
+                .catch { _uiState.update { it.copy(isLoading = false, errorMessage = "Tidak dapat memuat progress") } }
                 .collect { progress ->
                     _uiState.update { it.copy(isLoading = false, progress = progress) }
                 }

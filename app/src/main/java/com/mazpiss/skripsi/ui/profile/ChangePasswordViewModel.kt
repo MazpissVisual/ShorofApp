@@ -45,7 +45,9 @@ class ChangePasswordViewModel @Inject constructor(
             try {
                 val user = authRepository.currentUser
                     ?: throw Exception("Sesi habis, silakan login ulang")
-                val credential = EmailAuthProvider.getCredential(user.email!!, currentPassword)
+                val email = user.email
+                    ?: throw Exception("Akun ini tidak mendukung ganti password via email. Gunakan metode login asli (Google, dll).")
+                val credential = EmailAuthProvider.getCredential(email, currentPassword)
                 user.reauthenticate(credential).await()
                 user.updatePassword(newPassword).await()
                 _uiState.value = ChangePasswordUiState(isSuccess = true)

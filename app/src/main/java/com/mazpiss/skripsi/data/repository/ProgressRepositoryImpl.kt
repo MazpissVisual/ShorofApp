@@ -64,29 +64,39 @@ class ProgressRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addXp(userId: String, xp: Int) {
-        val snap = userDoc(userId).get().await()
-        val current = (snap.getLong("xp") ?: 0).toInt()
-        userDoc(userId).set(
-            mapOf("xp" to current + xp),
-            SetOptions.merge()
-        ).await()
+        if (xp <= 0) return
+        try {
+            val snap = userDoc(userId).get().await()
+            val current = (snap.getLong("xp") ?: 0).toInt()
+            userDoc(userId).set(
+                mapOf("xp" to current + xp),
+                SetOptions.merge()
+            ).await()
+        } catch (_: Exception) { }
     }
 
     override suspend fun updateMateriProgress(
         userId: String, materiId: String, selesai: Int, total: Int
     ) {
-        userDoc(userId).set(
-            mapOf("materiProgress" to mapOf(
-                materiId to mapOf("selesai" to selesai, "total" to total)
-            )),
-            SetOptions.merge()
-        ).await()
+        if (materiId.isBlank() || total <= 0) return
+        try {
+            userDoc(userId).set(
+                mapOf("materiProgress" to mapOf(
+                    materiId to mapOf("selesai" to selesai.coerceIn(0, total), "total" to total)
+                )),
+                SetOptions.merge()
+            ).await()
+        } catch (_: Exception) { }
     }
 
     override suspend fun saveQuizResult(userId: String, quizId: String, score: Int, total: Int) {
-        val xpGained = (score.toFloat() / total * 50).toInt()
-        addXp(userId, xpGained)
-        updateStreak(userId)
+        if (total <= 0) return
+        val clampedScore = score.coerceIn(0, total)
+        val xpGained = (clampedScore.toFloat() / total * 50).toInt()
+        try {
+            addXp(userId, xpGained)
+            updateStreak(userId)
+        } catch (_: Exception) { }
     }
 
     private fun today(): String =

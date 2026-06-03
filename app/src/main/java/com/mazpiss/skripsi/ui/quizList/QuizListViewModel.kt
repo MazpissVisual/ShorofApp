@@ -84,6 +84,7 @@ class QuizListViewModel @Inject constructor(
     fun nextQuestion(): Boolean {
         val state = _uiState.value
         if (state.selectedAnswer.isEmpty()) return false
+        if (state.questions.isEmpty() || state.currentIndex >= state.questions.size) return false
 
         var newScore = state.score
         if (state.selectedAnswer == state.questions[state.currentIndex].correct) {
